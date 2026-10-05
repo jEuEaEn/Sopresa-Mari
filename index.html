@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Abrir Sobre</title>
+  <style>
+    /* Reset e integración de scroll suave */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh; /* Adaptable a la barra dinámica en navegadores móviles */
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #fbe4e8 0%, #e6e6fa 50%, #f7d6e0 100%);
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      padding: 20px 16px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /* Scroll suave para Safari en iOS */
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Contenedor central flexible */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      width: 100%;
+      max-width: 420px;
+      margin: auto;
+    }
+
+    /* Estructura del Sobre Responsive */
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 320 / 200; /* Preserva la proporción exacta (16:10) */
+      background-color: #f0e2b6;
+      border: 3px solid #2b2b2b;
+      border-radius: 6px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      overflow: hidden; /* Mantiene la estética limpia */
+      -webkit-tap-highlight-color: transparent;
+      perspective: 1000px;
+    }
+
+    /* Solapas laterales e inferiores con Clip-path para escalado perfecto */
+    .envelope-pocket {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Solapa izquierda */
+    .envelope-pocket::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #e7d8a3;
+      clip-path: polygon(0% 0%, 50% 50%, 0% 100%);
+    }
+
+    /* Solapa derecha */
+    .envelope-pocket::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #e1cf96;
+      clip-path: polygon(100% 0%, 50% 50%, 100% 100%);
+    }
+
+    /* Solapa inferior */
+    .envelope-bottom {
+      position: absolute;
+      inset: 0;
+      background-color: #d9c68c;
+      clip-path: polygon(0% 100%, 50% 45%, 100% 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Solapa superior articulada */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #e3d29b;
+      clip-path: polygon(0% 0%, 100% 0%, 50% 55%);
+      transform-origin: top center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    /* Botón Sello de Corazón */
+    .seal-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(44px, 12vw, 52px);
+      height: clamp(44px, 12vw, 52px);
+      min-width: 44px; /* Tamaño mínimo táctil recomendado */
+      min-height: 44px;
+      background-color: #1a1a1a;
+      border-radius: 50%;
+      border: 2px solid #f0e2b6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 4;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    .seal-btn:hover,
+    .seal-btn:focus-visible {
+      transform: translate(-50%, -50%) scale(1.1);
+      background-color: #333333;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .seal-btn:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .seal-btn svg {
+      width: 50%;
+      height: 50%;
+      fill: #f5e6be;
+      transition: transform 0.2s ease;
+    }
+
+    .seal-btn:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* Animación de apertura */
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope-wrapper.open .seal-btn {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    /* Indicador Táctil */
+    .hint-badge {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 12px 24px;
+      border-radius: 30px;
+      color: #333333;
+      font-size: clamp(13px, 3.8vw, 15px);
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()" role="button" aria-label="Abrir sobre de carta">
+      <div class="envelope-flap"></div>
+      <div class="envelope-pocket"></div>
+      <div class="envelope-bottom"></div>
+      
+      <button class="seal-btn" id="sealBtn" aria-label="Abrir sobre con sello de corazón">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="hint-badge">
+      <span>👇</span> Toca el botón para abrir
+    </div>
+  </div>
+
+  <script>
+    function openEnvelope() {
+      const envelope = document.getElementById('envelope');
+      if (!envelope.classList.contains('open')) {
+        envelope.classList.add('open');
+        
+        // Redirección suave tras la animación
+        setTimeout(() => {
+          window.location.href = "principal.html";
+        }, 850);
+      }
+    }
+
+    // Permitir interacción con la tecla Enter o Espacio para accesibilidad
+    document.getElementById('envelope').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openEnvelope();
+      }
+    });
+  </script>
+
+</body>
+</html>

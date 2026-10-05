@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un mensaje especial para ti</title>
+  
+  <!-- Tipografías elegantes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      /* Fondo degradado suave en lila y rosa claro */
+      background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 50%, #fbcfe8 100%);
+      font-family: 'Montserrat', sans-serif;
+      color: #374151;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 15px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Contenedor Principal Adaptable */
+    .main-container {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 25px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 35px;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(192, 132, 252, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      z-index: 2;
+      margin: auto;
+    }
+
+    /* Columna 1: Título y Mensaje */
+    .text-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .main-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      color: #7e22ce;
+      line-height: 1.2;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .message-p {
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      line-height: 1.75;
+      color: #4b5563;
+      text-align: justify;
+      font-weight: 400;
+    }
+
+    /* Estilo especial para la pregunta final */
+    .final-question {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      color: #6b21a8;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(126, 34, 206, 0.15);
+    }
+
+    /* Columnas 2 y 3: Marcos de Fotografía */
+    .photo-card {
+      width: 100%;
+      height: 480px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+      border: 5px solid #ffffff;
+      background-color: #f3f4f6;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 32px rgba(126, 34, 206, 0.15);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* --- ADAPTABILIDAD PARA CELULARES Y TABLETS --- */
+    @media (max-width: 992px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        padding: 25px 20px;
+        gap: 25px;
+      }
+
+      .text-section {
+        text-align: left;
+      }
+
+      .message-p {
+        text-align: left;
+      }
+
+      .final-question {
+        margin-top: 15px;
+      }
+
+      .photo-card {
+        height: 420px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px;
+      }
+
+      .main-container {
+        padding: 20px 15px;
+        border-radius: 20px;
+      }
+
+      .photo-card {
+        height: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="main-container">
+    <!-- Columna Izquierda: Mensaje principal -->
+    <section class="text-section">
+      <h1 class="main-title">Un camino juntos...</h1>
+      
+      <p class="message-p">
+        Eres sumamente especial para mí. Aunque nos conocemos desde hace poco tiempo, con sinceridad siento como si te conociera de hace muchísimos años. Me fascina completamente tu manera de pensar, la nobleza de tu corazón y lo increíblemente linda que eres en todos los sentidos.
+      </p>
+      
+      <p class="message-p">
+        Quise prepararte esta pequeña sorpresa para expresarte lo mucho que me gustas y hacerte una pregunta muy importante. Sé perfectamente que me has dicho que debemos irnos conociendo un poco más antes de dar este paso, y créeme que respeto y valoro muchísimo tu forma de ver las cosas.
+      </p>
+      
+      <p class="message-p">
+        Sin embargo, la verdad es que no aguanto las ganas de que llegue el día en que pueda llamarte "amor" o "mi cielo" con toda la ilusión del mundo. Por eso, lo que quiero proponerte es que no esperemos más para empezar este camino juntos: podemos seguir conociéndonos día a día, pero siendo novios, apoyándonos y disfrutando cada momento.
+      </p>
+
+      <!-- Texto al final -->
+      <h2 class="final-question">¿Aceptas?</h2>
+    </section>
+
+    <!-- Foto 1 local -->
+    <div class="photo-card">
+      <img src="./37450f79-309b-450e-9ede-612369a87e69.jpg" alt="Foto especial 1">
+    </div>
+
+    <!-- Foto 2 local -->
+    <div class="photo-card">
+      <img src="./a0b2e0a1-deae-4a6c-b205-7fecea62061e.jpg" alt="Foto especial 2">
+    </div>
+  </main>
+
+</body>
+</html>
