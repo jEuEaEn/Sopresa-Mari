@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro primer mes juntos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f3e8ff, #fce7f3, #fbcfe8);
+            font-family: 'Montserrat', sans-serif;
+            color: #374151;
+            padding: 45px 20px;
+        }
+
+        /* TITULO */
+
+        .page-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: #7e22ce;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 1px 2px 4px rgba(126, 34, 206, 0.12);
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+
+        .main-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* MENSAJE */
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(192, 132, 252, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            animation: aparecer 1s ease;
+        }
+
+        .message-card h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #7e22ce;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .message-card p {
+            font-size: 15px;
+            line-height: 2;
+            text-align: center;
+            color: #4b5563;
+        }
+
+        /* FOTOGRAFIAS */
+
+        .photos-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            animation: aparecer 1.2s ease;
+        }
+
+        .photo-card {
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+            border-radius: 22px;
+            border: 5px solid white;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: #ffffff;
+            padding: 0;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-7px) scale(1.015);
+            box-shadow: 0 18px 35px rgba(126, 34, 206, 0.2);
+        }
+
+        /* IMAGENES OCUPANDO TODO EL CUADRO */
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* MENSAJE FINAL */
+
+        .footer-message {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #7e22ce;
+            text-align: center;
+            margin-top: 45px;
+            animation: aparecer 1.5s ease;
+        }
+
+        /* ANIMACION */
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .photos-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+
+            .photo-card {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .message-card {
+                padding: 25px 18px;
+            }
+
+            .message-card p {
+                font-size: 13px;
+                line-height: 1.9;
+            }
+
+            .photos-section {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-card {
+                height: 420px;
+            }
+
+            .footer-message {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="page-title">Nuestro primer mes juntos</h1>
+    </header>
+
+    <main class="main-container">
+
+        <!-- MENSAJE ROMANTICO -->
+
+        <section class="message-card">
+
+            <h2>Un mes inolvidable...</h2>
+
+            <p>
+                Parece increíble que haya pasado un mes desde que comenzamos esta historia tan bonita.<br>
+                Siento que fue ayer cuando empezamos a compartir nuestros primeros momentos.<br>
+                Y ahora miro atrás y me doy cuenta de lo feliz que he sido a tu lado.<br>
+                Cada conversación, cada sonrisa y cada instante contigo se ha vuelto especial.<br>
+                El tiempo parece correr cuando estoy contigo, pero los recuerdos permanecen.<br>
+                No sabes cuánto te amo y lo agradecido que estoy de tenerte en mi vida.<br>
+                Quiero seguir descubriendo cada parte de ti y acompañarte en cada aventura.<br>
+                No quiero que nuestra historia se mida en meses, sino en todos los años que nos esperan.<br>
+                Sueño con una vida en la que podamos seguir eligiéndonos incluso en los días difíciles.<br>
+                Si este primer mes fue tan maravilloso, imagina todo lo bonito que todavía nos falta vivir.
+            </p>
+
+        </section>
+
+        <!-- GALERIA DE FOTOGRAFIAS -->
+
+        <section class="photos-section">
+
+            <div class="photo-card">
+                <img src="./WhatsApp Image 2026-11-04 at 3.50.33 PM.jpeg" alt="Un recuerdo especial">
+            </div>
+
+            <div class="photo-card">
+                <img src="./WhatsApp Image 2026-11-04 at 3.50.14 PM.jpeg" alt="Un momento bonito">
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p class="footer-message">
+            Por nuestro primer mes y por todos los que vienen ♡
+        </p>
+    </footer>
+
+</body>
+</html>
